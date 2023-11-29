@@ -2,16 +2,14 @@
 
 import React from "react";
 import Layout from "./Layout"
-
-
-function User(props) {
-    console.log(props)
-    return <Layout>
-      여기는 레이아웃이 들어가는 곳이에요
-    </Layout>
-  }
+import Child from "./child"
 
 function App() {
-  return <User>안녕하세요</User>;
+  const name = "리액트";
+return <Child
+age = {10} name = {name}
+>
+  이름
+</Child>
 }
 export default App;
