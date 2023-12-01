@@ -1,42 +1,56 @@
 // src/App.js
 
 import React from "react";
-import Layout from "./Layout"
-import Child from "./child"
 import { useState } from "react";
 import { flushSync } from "react-dom";
 
 function App() {
 
-  function onClick() {
-    alert('로그인 되었습니다.');
+  const [id, setId] = useState("")
+  const [password, setPassword] = useState("")
+
+  // id 필드가 변경되었을대 호출되는 함수
+  const onChangeIdHandler = (event) => {
+    setId(event.target.value)
   }
 
-  function onChangeName() {
-    setName('이름 변경됨');
+  // password 필드가 변경되었을때 호출되는 함수
+  const onchangePasswordHandler = (event) => {
+    setPassword(event.target.value)
   }
 
-  const [name, setName] = useState('뉴진스의');
-  console.log('name은 ',name)
+  // 아이디랑 비밀번호가 잘 변경되는지 확인
+  console.log('id : ',id)
+  console.log('pw : ',password)
 
-  
+
+  const loginClick = () => {
+    alert(`고객님이 입력하신 아이디는 ${id} 비밀번호는 ${password} 입니다.`)
+    setId("")
+    setPassword("")
+  }
+
+
+
   return(
-    <>
+    <div>
+      <br />
+      <div>
+        아이디 : <input type='id' value ={id} onChange={onChangeIdHandler} />
+      </div>
+      <br />
 
-    <button onClick={function() {
-      alert('로그인 되었습니다.');
-      setName('하입보이요');
-    }}
-    
-    >로그인</button>
-    <br/>
+      <div>
+        비밀번호 : <input type="password" value = {password} onChange={onchangePasswordHandler}/>
+      </div>
+      <br />
+      <div>
+      <button onClick={loginClick}> 로그인 </button>
 
-    {name}
-    <br/>
+      </div>
 
-
-    </>
-  ) 
-
+    </div>
+  )
 }
+
 export default App;
