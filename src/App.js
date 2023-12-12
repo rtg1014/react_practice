@@ -3,7 +3,7 @@
 import React from "react";
 import { useState } from "react";
 import { flushSync } from "react-dom";
-import Inde from "./inde";
+
 // function App() {
 
 //   const [id, setId] = useState("")
@@ -54,45 +54,34 @@ import Inde from "./inde";
 // }
 
 function App(){
-  let buttonClickCount = 0;
 
-  const [objTest, setObjTest] = useState({
-    name : "에스파",
-    members : 4
-  })
+  const [num, setNum] = useState(0)
 
-  // set obj 로 바로 변경하기
-  const onChangeHandler = () => {
-    setObjTest({
-      name : "레드벨벳",
-    })
-    console.log(buttonClickCount)
+  const plusButton = () =>{
+    const newNum = num + 1
+    setNum(newNum)
   }
-
-
-  /*
-  스프레드 연산자 사용해서 복사해서 변경하기
-  const onChangeHandler = () => {
-    const objTestCopy = {...objTest}
-    objTestCopy.name = "레드벨벳"
-    setObjTest(objTestCopy)
-  }
-  */
-
-
-
+  
   return(
     <div>
       <div>
-      그룹이름은 {objTest.name} 입니다.
+        {num}
       </div>
 
-      <button
-      onClick={onChangeHandler}
+      <button onClick={plusButton} > + 함수버튼 </button>
 
-      >
-      이름변경버튼
-      </button>
+      <button onClick={()=>{
+        const newNum = num - 1
+        setNum(newNum)
+      }} > - 함수버튼 </button>
+
+
+
+{/*  가장 심플하게 구현한 버튼
+<button onClick = {() => setNum(num + 1)}>+ 버튼</button>
+<button onClick = {() => setNum(num - 1)}>- 버튼</button>
+ */}
+      
     </div>
   )
 }
