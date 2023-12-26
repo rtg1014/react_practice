@@ -20,6 +20,7 @@ const App = () => {
     setNewAge(event.target.value);
   }
 
+  // 추가하기 버튼을 클릭했을 때 실행되는 함수
   const clickAddButtonHandler = () => {
     const newUser = {
       id: users.length+1,
@@ -30,6 +31,24 @@ const App = () => {
     
     alert("추가 버튼이 클릭되었습니다.")
   }
+
+  // 삭제하기 버튼을 클릭했을 때 실행되는 함수
+  // const clickDeleteButtonHandler = (id) => {
+  //   alert('아이디를 삭제합니다')
+  //   const newUsers = users.filter((item)=>{
+  //     return item.id !== id;
+  //   })
+  //   setUsers(newUsers);
+  // }
+
+  // 삭제하기 버튼 - splice 사용
+  const clickDeleteButtonHandler = (id) => {
+    alert('아이디를 삭제합니다');
+    const indexToDelete = users.findIndex((user) => user.id === id);
+    const newUsers = [...users];
+    newUsers.splice(indexToDelete, 1);
+    setUsers(newUsers);
+  };
 
 
   return (
@@ -72,6 +91,9 @@ const App = () => {
         return(
           <div key = {item.id} className="component-style">
             {item.name} - {item.age}
+            <button
+            onClick={()=>clickDeleteButtonHandler(item.id)}
+            >삭제</button>
           </div>
         )
       })}
