@@ -81,20 +81,12 @@ const App = () => {
       >
         추가버튼
       </button>
-
       </div>
-
-  
     </div>
     <div className="app-style">
       {users.map((item)=>{
         return(
-          <div key = {item.id} className="component-style">
-            {item.name} - {item.age}
-            <button
-            onClick={()=>clickDeleteButtonHandler(item.id)}
-            >삭제</button>
-          </div>
+        <User key = {item.id} item={item} removeFunction={clickDeleteButtonHandler} />
         )
       })}
 
@@ -102,5 +94,18 @@ const App = () => {
     </div>
   );
 };
+
+const User = ({item,removeFunction}) => {
+  return (
+    <div>
+        <div key = {item.id} className="component-style">
+            {item.name} - {item.age}
+            <button
+            onClick={()=>removeFunction(item.id)}
+            >삭제</button>
+          </div>
+    </div>
+  )
+}
 
 export default App;
